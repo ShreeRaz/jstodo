@@ -2,6 +2,7 @@
 
 import postsData from "@/lib/data.json";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
 
 type Post = {
   id: number;
@@ -11,6 +12,11 @@ type Post = {
 };
 
 const posts = postsData as Post[];
+const progressCard = [
+  { title: "Completed", id: 1 },
+  { title: "Remaining", id: 2 },
+  { title: "Progress", id: 3 },
+];
 
 function Dashboard() {
   const allCategories = posts.map((post) => post.category);
@@ -35,7 +41,14 @@ function Dashboard() {
 
       {/* progressbar */}
 
-      <div></div>
+      <div className="grid grid-cols-3 gap-6 p-4 text-2xl">
+        {progressCard.map((card) => (
+          <Card key={card.id}>
+            <CardHeader className="text-2xl">{card.title}</CardHeader>
+            <CardHeader className="text-2xl">0</CardHeader>
+          </Card>
+        ))}
+      </div>
 
       {/* Problems */}
 
