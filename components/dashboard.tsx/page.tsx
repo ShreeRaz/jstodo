@@ -1,6 +1,7 @@
 "use client";
 
 import postsData from "@/lib/data.json";
+import { Button } from "@/components/ui/button";
 
 type Post = {
   id: number;
@@ -11,9 +12,12 @@ type Post = {
 
 const posts = postsData as Post[];
 
-export default function Dashboard() {
+function Dashboard() {
+  const allCategories = posts.map((post) => post.category);
+  const uniqueCategories = Array.from(new Set(allCategories));
+
   return (
-    <div>
+    <div className="dark">
       <div className="p-4 ">
         <h1 className="text-3xl font-bold">JS Problem Tracker</h1>
         <p>
@@ -23,11 +27,17 @@ export default function Dashboard() {
       </div>
 
       {/* filter */}
-      <div></div>
+      <div>
+        {uniqueCategories.map((cats) => (
+          <Button key={cats}>{cats}</Button>
+        ))}
+      </div>
 
       {/* progressbar */}
 
       <div></div>
+
+      {/* Problems */}
 
       <ul className="flex flex-col gap-4 justify-center items-center">
         {posts.map((post) => (
@@ -37,3 +47,4 @@ export default function Dashboard() {
     </div>
   );
 }
+export default Dashboard;

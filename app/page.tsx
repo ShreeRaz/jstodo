@@ -3,7 +3,7 @@ import Dashboard from "@/components/dashboard.tsx/page";
 
 export default function page() {
   return (
-    <div>
+    <div className="dark">
       <Dashboard />
     </div>
   );
