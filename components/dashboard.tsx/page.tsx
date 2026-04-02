@@ -3,6 +3,7 @@
 import postsData from "@/lib/data.json";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type Post = {
   id: number;
@@ -17,6 +18,12 @@ const progressCard = [
   { title: "Remaining", id: 2 },
   { title: "Progress", id: 3 },
 ];
+
+//task distributioin
+
+const Foundation = posts.filter((post) => post.level === "easy");
+const Intermidiate = posts.filter((post) => post.level === "mid");
+const Advance = posts.filter((post) => post.level === "hard");
 
 function Dashboard() {
   const allCategories = posts.map((post) => post.category);
@@ -35,7 +42,9 @@ function Dashboard() {
       {/* filter */}
       <div>
         {uniqueCategories.map((cats) => (
-          <Button key={cats}>{cats}</Button>
+          <Button className="dark" key={cats}>
+            {cats}
+          </Button>
         ))}
       </div>
 
@@ -43,7 +52,7 @@ function Dashboard() {
 
       <div className="grid grid-cols-3 gap-6 p-4 text-2xl">
         {progressCard.map((card) => (
-          <Card key={card.id}>
+          <Card className="bg-ring dark" key={card.id}>
             <CardHeader className="text-2xl">{card.title}</CardHeader>
             <CardHeader className="text-2xl">0</CardHeader>
           </Card>
@@ -53,8 +62,37 @@ function Dashboard() {
       {/* Problems */}
 
       <ul className="flex flex-col gap-4 justify-center items-center">
-        {posts.map((post) => (
-          <li key={post.id}>{post.text}</li>
+        <p>Level-1 Foundations</p>
+        {Foundation.map((post) => (
+          <Card
+            className=" p-4 flex-row items-center bg-ring dark w-full"
+            key={post.id}
+          >
+            <Checkbox />
+            {post.text}
+          </Card>
+        ))}
+
+        <p>Level-2 Intermediate</p>
+        {Intermidiate.map((post) => (
+          <Card
+            className=" p-4 flex-row items-center bg-ring dark w-full"
+            key={post.id}
+          >
+            <Checkbox />
+            {post.text}
+          </Card>
+        ))}
+
+        <p>Level-3 Advance</p>
+        {Advance.map((post) => (
+          <Card
+            className=" p-4 flex-row items-center bg-ring dark w-full"
+            key={post.id}
+          >
+            <Checkbox />
+            {post.text}
+          </Card>
         ))}
       </ul>
     </div>
