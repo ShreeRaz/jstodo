@@ -30,8 +30,8 @@ function Dashboard() {
   const uniqueCategories = Array.from(new Set(allCategories));
 
   return (
-    <div className="dark">
-      <div className="p-4 ">
+    <div className="dark p-4">
+      <div className=" ">
         <h1 className="text-3xl font-bold">JS Problem Tracker</h1>
         <p>
           60 problems to take you from beginner to proficient. Check off as you
@@ -50,7 +50,7 @@ function Dashboard() {
 
       {/* progressbar */}
 
-      <div className="grid grid-cols-3 gap-6 p-4 text-2xl">
+      <div className="grid grid-cols-3 gap-6  text-2xl">
         {progressCard.map((card) => (
           <Card className="bg-ring dark" key={card.id}>
             <CardHeader className="text-2xl">{card.title}</CardHeader>

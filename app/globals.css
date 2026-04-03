@@ -128,3 +128,10 @@
     @apply font-mono;
   }
 }
+@layer utilities {
+ .container {
+    max-width: 1400px;
+    margin-inline: auto;
+    ;
+  }
+}
