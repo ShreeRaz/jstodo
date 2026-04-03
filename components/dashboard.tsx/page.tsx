@@ -40,9 +40,9 @@ function Dashboard() {
       </div>
 
       {/* filter */}
-      <div>
+      <div className="flex justify-center gap-4">
         {uniqueCategories.map((cats) => (
-          <Button className="dark" key={cats}>
+          <Button className="dark text-xl p-4" key={cats}>
             {cats}
           </Button>
         ))}
