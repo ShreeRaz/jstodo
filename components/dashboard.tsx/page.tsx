@@ -4,6 +4,7 @@ import postsData from "@/lib/data.json";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 type Post = {
   id: number;
@@ -21,14 +22,25 @@ const progressCard = [
 
 //task distributioin
 
-const Foundation = posts.filter((post) => post.level === "easy");
-const Intermidiate = posts.filter((post) => post.level === "mid");
-const Advance = posts.filter((post) => post.level === "hard");
-
 function Dashboard() {
-  const allCategories = posts.map((post) => post.category);
-  const uniqueCategories = Array.from(new Set(allCategories));
+  const [activeCategory, setActiveCategory] = useState<string>("all");
 
+  const uniqueCategories = Array.from(
+    new Set(posts.map((post) => post.category)),
+  );
+
+  {
+    /* filter CATEGORY BASED */
+  }
+
+  const filteredPosts =
+    activeCategory === "all"
+      ? posts
+      : posts.filter((post) => post.category === activeCategory);
+
+  const Foundation = filteredPosts.filter((post) => post.level === "easy");
+  const Intermidiate = filteredPosts.filter((post) => post.level === "mid");
+  const Advance = filteredPosts.filter((post) => post.level === "hard");
   return (
     <div className="dark p-4">
       <div className=" ">
@@ -39,10 +51,22 @@ function Dashboard() {
         </p>
       </div>
 
-      {/* filter */}
+      {/* filter menu */}
+
       <div className="flex justify-center gap-4">
+        <Button
+          className="dark text-xl p-4"
+          onClick={() => setActiveCategory("all")}
+        >
+          All
+        </Button>
+
         {uniqueCategories.map((cats) => (
-          <Button className="dark text-xl p-4" key={cats}>
+          <Button
+            className="dark text-xl p-4"
+            key={cats}
+            onClick={() => setActiveCategory(cats)}
+          >
             {cats}
           </Button>
         ))}
