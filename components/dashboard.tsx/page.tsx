@@ -24,6 +24,7 @@ const progressCard = [
 
 function Dashboard() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [count, setCount] = useState(0);
 
   const uniqueCategories = Array.from(
     new Set(posts.map((post) => post.category)),
@@ -78,7 +79,7 @@ function Dashboard() {
         {progressCard.map((card) => (
           <Card className="bg-ring dark" key={card.id}>
             <CardHeader className="text-2xl">{card.title}</CardHeader>
-            <CardHeader className="text-2xl">0</CardHeader>
+            <CardHeader className="text-2xl">{count}</CardHeader>
           </Card>
         ))}
       </div>
@@ -92,7 +93,8 @@ function Dashboard() {
             className=" p-4 flex-row items-center bg-ring dark w-full"
             key={post.id}
           >
-            <Checkbox />
+            <Checkbox onClick={() => setCount(+4)} />
+            console.log(count);
             {post.text}
           </Card>
         ))}
